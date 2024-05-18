@@ -30,3 +30,15 @@ def list_tasks():
                 print(f"{index}. {task.strip()}")
     else:
         print("No takss found.")
+
+def remove_task(index):
+    if os.path.exists("tasks.txt"):
+        with open("tasks.txt", "r") as file:
+            tasks = file.readlines()
+        with open("tasks.txt", "w") as file:
+            for i, task in enumerate(tasks, start=1):
+                if i != index:
+                    file.write(task)
+        print("Task removed succesfully.")
+    else:
+        print("No tasks found.")
