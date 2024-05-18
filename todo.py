@@ -42,3 +42,37 @@ def remove_task(index):
         print("Task removed succesfully.")
     else:
         print("No tasks found.")
+
+def find_word(word):
+    if os.path.exists("tasks.txt"):
+        with open("tasks.txt", "r") as file:
+            tasks = file.readlines()
+        indexes = [index + 1 for index, task in enumerate(tasks) if word in task]
+        if indexes:
+            print(f"Word '{word}' found in tasks at indexes: {indexes}")
+        else:
+            print(f"Word '{word}' not found in any tasks.")
+    else:
+        print("No tasks found.")
+
+# parse command line arguments.
+
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+
+    if args.add:
+        add_task(args.add)
+    elif args.list:
+        list_tasks()
+    elif args.remove:
+        remove_task(int(args.remove))
+    elif args.find:
+        find_word(args.find)
+    else:
+        parser.print_help()
+
+if __name__ == "__main__":
+    main()
+
+# now the app is ready to be run.
