@@ -13,6 +13,20 @@ def create_parser():
     parser.add_argument("-a", "--add"_, metavar="", help="List all tasks")
     parser.add_argument("-l", "--list", action="store_true", help="List all tasks")
     parser.add_argument("-r", "--remove", metavar="", help="remove a task by index")
-    parser.add_argument("-f",)
+    parser.add_argument("-f", "--find", metavar="", help="Find a word in tasks and return indexes")
     return parser
                         
+# add task management functions
+
+def add_task(task):
+    with open("tasks.txt", "a") as file:
+        file.write( task + '\n')
+
+def list_tasks():
+    if os.path.exists("tasks.txt"):
+        with open("tasks.txt", "r") as file:
+            tasks = file.readlines()
+            for index, task in enumerate(tasks, start=1):
+                print(f"{index}. {task.strip()}")
+    else:
+        print("No takss found.")
