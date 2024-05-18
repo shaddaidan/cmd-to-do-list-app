@@ -29,19 +29,37 @@ def list_tasks():
             for index, task in enumerate(tasks, start=1):
                 print(f"{index}. {task.strip()}")
     else:
-        print("No takss found.")
+        print("bra you got no tasks left congrats bro. : )")
+
+# def remove_task(index):
+#     if os.path.exists("tasks.txt"):
+#         with open("tasks.txt", "r") as file:
+#             tasks = file.readlines()
+#         with open("tasks.txt", "w") as file:
+#             for i, task in enumerate(tasks, start=1):
+#                 if i != index:
+#                     file.write(task)
+#         print(f"we have crushed task: ")
+#     else:
+#         print("No tasks found.")
 
 def remove_task(index):
     if os.path.exists("tasks.txt"):
         with open("tasks.txt", "r") as file:
             tasks = file.readlines()
-        with open("tasks.txt", "w") as file:
-            for i, task in enumerate(tasks, start=1):
-                if i != index:
-                    file.write(task)
-        print("Task removed succesfully.")
+        
+        if 0 < index <= len(tasks):
+            removed_task = tasks[index - 1].strip()  # Store the task being removed
+            with open("tasks.txt", "w") as file:
+                for i, task in enumerate(tasks, start=1):
+                    if i != index:
+                        file.write(task)
+            print(f"We have crushed task: {removed_task}")
+        else:
+            print("Invalid index.")
     else:
         print("No tasks found.")
+
 
 def find_word(word):
     if os.path.exists("tasks.txt"):
