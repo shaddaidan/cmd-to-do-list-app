@@ -35,18 +35,6 @@ def list_tasks():
     else:
         print("bra you got no tasks left congrats bro. : )")
 
-# def remove_task(index):
-#     if os.path.exists("tasks.txt"):
-#         with open("tasks.txt", "r") as file:
-#             tasks = file.readlines()
-#         with open("tasks.txt", "w") as file:
-#             for i, task in enumerate(tasks, start=1):
-#                 if i != index:
-#                     file.write(task)
-#         print(f"we have crushed task: ")
-#     else:
-#         print("No tasks found.")
-
 def remove_task(index):
     if os.path.exists("tasks.txt"):
         with open("tasks.txt", "r") as file:
@@ -94,23 +82,26 @@ def emphasize_task(index):
     else:
         print("no tasks found.")
 
-# def clear_tasks():
-#     if os.path.exists("tasks.txt"):
-#         open("tasks.txt", "w").close()
-#         print("All tasks have been cleared.")
+# our 24hours task clearer
 
-# def schedule_clearing():
-#     schedule.every().day.at("03:00").do(clear_tasks)
+def clear_tasks():
+    if os.path.exists("tasks.txt"):
+        open("tasks.txt", "w").close()
+        print("All tasks have been cleared.")
 
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(1)
-# parse command line arguments.
+def schedule_clearing():
+    schedule.every().day.at("19:15").do(clear_tasks)
 
-# def start_schedule_thread():
-#     clear_thread = threading.Thread(target=schedule_clearing)
-#     clear_thread.daemin = True
-#     clear_thread.start()
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+def start_schedule_thread():
+    clear_thread = threading.Thread(target=schedule_clearing)
+    clear_thread.daemon = True
+    clear_thread.start()
+
+# run the actual app
 
 def main():
     parser = create_parser()
