@@ -10,7 +10,7 @@ import os
 
 def create_parser():
     parser = argparse.ArgumentParser(description="Command_line Todo List App")
-    parser.add_argument("-a", "--add", metavar="", help="List all tasks")
+    parser.add_argument("-a", "--add", metavar="", help="add a new task")
     parser.add_argument("-l", "--list", action="store_true", help="List all tasks")
     parser.add_argument("-r", "--remove", metavar="", help="remove a task by index")
     parser.add_argument("-f", "--find", metavar="", help="Find a word in tasks and return indexes")
